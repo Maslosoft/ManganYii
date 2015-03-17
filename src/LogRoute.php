@@ -11,7 +11,7 @@
  * @link http://maslosoft.com/mangan/
  */
 
-namespace Maslosoft\Mangan\Components;
+namespace Maslosoft\ManganYii;
 
 use CLogRoute;
 use Maslosoft\Mangan\Mangan;
@@ -28,10 +28,9 @@ use Yii;
  * 		'class' => 'CLogRouter',
  * 		'routes' => array(
  * 			array(
- * 				'class'=>'ext.EMongoDbLogRoute',
+ * 				'class'=>'Maslosoft\\ManganYii\\LogRoute',
  * 				'levels'=>'trace, info, error, warning',
  * 				'categories' => 'system.*',
- * 				'collectionName' => 'yiilog',
  * 			),
  * 		),
  * ),
@@ -57,16 +56,11 @@ use Yii;
  */
 class LogRoute extends CLogRoute
 {
-
 	/**
-	 * @var string Mongo DB component.
+	 * Model class name
+	 * @var string
 	 */
-	public $connectionID = 'mongodb';
-
-	/**
-	 * @var string Collection name.
-	 */
-	public $collectionName = 'yiilogs';
+	public $model = Maslosoft\ManganYii\Models\LogModel::class;
 
 	/**
 	 * @var string timestamp type name: 'float', 'date', 'string'

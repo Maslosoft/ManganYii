@@ -11,7 +11,7 @@
  * @link http://maslosoft.com/mangan/
  */
 
-namespace Maslosoft\Mangan\Components;
+namespace Maslosoft\ManganYii;
 
 use CHttpSession;
 use Maslosoft\Mangan\Mangan;
