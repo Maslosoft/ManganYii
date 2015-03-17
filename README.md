@@ -1,2 +1,19 @@
-# ManganYii
-Mangan components for Yii
+<!--header-->
+<!-- Auto generated do not modify between `header` and `/header` -->
+
+# <a href="http://maslosoft.com/mangan-yii/">Maslosoft Mangan Yii</a>
+<a href="http://maslosoft.com/mangan-yii/">_Mangan components for Yii_</a>
+
+<a href="https://packagist.org/packages/maslosoft/mangan-yii" title="Latest Stable Version">
+<img src="https://poser.pugx.org/maslosoft/mangan-yii/v/stable.svg" alt="Latest Stable Version" style="height: 20px;"/>
+</a>
+<a href="https://packagist.org/packages/maslosoft/mangan-yii" title="License">
+<img src="https://poser.pugx.org/maslosoft/mangan-yii/license.svg" alt="License" style="height: 20px;"/>
+</a>
+
+### Quick Install
+```bash
+composer require maslosoft/mangan-yii:"*"
+```
+
+<!--/header-->
