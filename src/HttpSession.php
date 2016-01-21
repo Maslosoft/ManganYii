@@ -14,34 +14,22 @@
 namespace Maslosoft\ManganYii;
 
 use CHttpSession;
-use Maslosoft\Mangan\Mangan;
-use Maslosoft\Mangan\Exceptions\ManganException;
-use MongoCollection;
+use Maslosoft\Mangan\Criteria;
+use Maslosoft\Mangan\EntityManager;
+use Maslosoft\Mangan\Finder;
+use Maslosoft\ManganYii\Models\Session;
 use MongoDate;
-use MongoId;
 use Yii;
 
 /**
  * HttpSession
  *
  * Example, in config/main.php:
+ * ```php
  * 	'session' => [
- * 		'class' => 'Maslosoft\Mangan\Components\HttpSession',
- * 		'collectionName' => 'Mangan.Session',
- * 		'idColumn' => 'id',
- * 		'dataColumn' => 'data',
- * 		'expireColumn' => 'expire',
+ * 		'class' => \Maslosoft\ManganYii\HttpSession::class,
  * 	],
- *
- * Options:
- * connectionID			: mongo component name		: default mongodb
- * collectionName			: collaction name				: default yiisession
- * idColumn					: id column name				: default id
- * dataColumn				: data column name			: default dada
- * expireColumn			: expire column name			: default expire
- * fsync						: fsync flag					: default false
- * safe						: safe flag						: default false
- * timeout					: timeout miliseconds		: default null
+ * ```
  *
  * @author Ianaré Sévi (merge into MongoDB)
  * @author aoyagikouhei (original author)
@@ -50,97 +38,22 @@ class HttpSession extends CHttpSession
 {
 
 	/**
-	 * @var string Mongo DB component.
+	 * Finder instance
+	 * @var Finder
 	 */
-	public $connectionID = 'mongodb';
+	private $finder = null;
 
 	/**
-	 * @var string Collection name
+	 * Entity manager instance
+	 * @var EntityManager
 	 */
-	public $collectionName = 'Mangan.Session';
+	private $em = null;
 
 	/**
-	 * @var string id column name
+	 *
+	 * @var Session
 	 */
-	public $idColumn = 'id';
-
-	/**
-	 * @var string level data name
-	 */
-	public $dataColumn = 'data';
-
-	/**
-	 * @var string expire column name
-	 */
-	public $expireColumn = 'expire';
-
-	/**
-	 * Set to false to disable
-	 * @var string ip column name
-	 */
-	public $ipColumn = 'ip';
-
-	/**
-	 * Set to false to disable
-	 * @var string browser column name
-	 */
-	public $browserColumn = 'browser';
-
-	/**
-	 * Set to false to disable
-	 * @var string session datetime column name
-	 */
-	public $dateTimeColumn = 'dateTime';
-
-	/**
-	 * Set to false to disable
-	 * @var string user id column name
-	 */
-	public $userIdColumn = 'userId';
-
-	/**
-	 * @var boolean forces the update to be synced to disk before returning success.
-	 */
-	public $fsync = false;
-
-	/**
-	 * @var boolean the program will wait for the database response.
-	 */
-	public $safe = false;
-
-	/**
-	 * @var boolean if "w" is set, this sets how long (in milliseconds) for the client to wait for a database response.
-	 */
-	public $timeout = null;
-
-	/**
-	 * @var array insert options
-	 */
-	private $_options;
-
-	/**
-	 * @var MongoCollection mongo Db collection
-	 */
-	private $_collection;
-
-	/**
-	 * Returns current MongoCollection object.
-	 * @return MongoCollection
-	 */
-	protected function setCollection($collectionName)
-	{
-		if (!isset($this->_collection))
-		{
-			$db = Yii::app()->getComponent($this->connectionID);
-			if (!($db instanceof Mangan))
-			{
-				throw new ManganException('HttpSession.connectionID is invalid');
-			}
-
-			$this->_collection = $db->getDbInstance()->selectCollection($collectionName);
-		}
-		return $this->_collection;
-	}
+	private $model = null;
 
 	/**
 	 * Initializes the route.
@@ -148,21 +61,26 @@ class HttpSession extends CHttpSession
 	 */
 	public function init()
 	{
-		$this->setCollection($this->collectionName);
-		$this->_options = [
-			'fsync' => $this->fsync,
-			'w' => $this->safe
-		];
-		if (!is_null($this->timeout))
-		{
-			$this->_options['timeout'] = $this->timeout;
-		}
 		parent::init();
+		$this->model = new Session();
+		$this->finder = Finder::create($this->model);
+		$this->em = EntityManager::create($this->model);
 	}
 
+	/**
+	 *
+	 * @param string $id
+	 * @return Session|null
+	 */
 	protected function getData($id)
 	{
-		return $this->_collection->findOne([$this->idColumn => $id], [$this->dataColumn]);
+		$found = $this->finder->findByAttributes(['id' => $id]);
+		if (null === $found)
+		{
+			return null;
+		}
+		$this->model = $found;
+		return $found;
 	}
 
 	protected function getExipireTime()
@@ -200,8 +118,8 @@ class HttpSession extends CHttpSession
 	 */
 	public function readSession($id)
 	{
-		$row = $this->getData($id);
-		return is_null($row) ? '' : $row[$this->dataColumn];
+		$document = $this->getData($id);
+		return $document === null ? '' : $document->data;
 	}
 
 	/**
@@ -213,31 +131,14 @@ class HttpSession extends CHttpSession
 	 */
 	public function writeSession($id, $data)
 	{
-		$options = $this->_options;
-		$options['upsert'] = true;
-		$data = [
-			$this->dataColumn => $data,
-			$this->expireColumn => $this->getExipireTime(),
-			$this->idColumn => $id
-		];
-		if($this->ipColumn)
-		{
-			$data[$this->ipColumn] = $_SERVER['REMOTE_ADDR'];
-		}
-		if($this->browserColumn)
-		{
-			$data[$this->browserColumn] = $_SERVER['HTTP_USER_AGENT'];
-		}
-		if($this->dateTimeColumn)
-		{
-			$data[$this->dateTimeColumn] = new MongoDate();
-		}
-		if($this->userIdColumn)
-		{
-			$data[$this->userIdColumn] = new MongoId(Yii::app()->user->id);
-		}
-		
-		return $this->_collection->update([$this->idColumn => $id], $data, $options);
+		$this->model->data = $data;
+		$this->model->ip = $_SERVER['REMOTE_ADDR'];
+		$this->model->browser = $_SERVER[' HTTP_USER_AGENT'];
+		$this->model->dateTime = new MongoDate();
+		$this->model->userId = Yii::app()->user->id;
+		$criteria = new Criteria(null, $this->model);
+		$criteria->id = $id;
+		return $this->em->updateOne($criteria, null, true);
 	}
 
 	/**
@@ -248,7 +149,9 @@ class HttpSession extends CHttpSession
 	 */
 	public function destroySession($id)
 	{
-		return $this->_collection->remove([$this->idColumn => $id], $this->_options);
+		$criteria = new Criteria(null, $this->model);
+		$criteria->id = $id;
+		return $this->em->deleteOne($criteria);
 	}
 
 	/**
@@ -259,7 +162,9 @@ class HttpSession extends CHttpSession
 	 */
 	public function gcSession($maxLifetime)
 	{
-		return $this->_collection->remove([$this->expireColumn => ['$lt' => time()]], $this->_options);
+		$criteria = new Criteria(null, $this->model);
+		$criteria->addCond('expire', '$lt', time());
+		$this->em->deleteAll($criteria);
 	}
 
 	/**
@@ -274,27 +179,26 @@ class HttpSession extends CHttpSession
 
 		parent::regenerateID(false);
 		$newId = session_id();
-		$row = $this->getData($oldId);
-		if (is_null($row))
+		$document = $this->getData($oldId);
+		if (is_null($document))
 		{
-			$this->_collection->insert([
-				$this->idColumn => $newId
-				, $this->expireColumn => $this->getExipireTime()
-					], $this->_options);
+			$model = new Session();
+			$model->id = $newId;
+			$this->em->insert($model);
 		}
-		else if ($deleteOldSession)
+		elseif ($deleteOldSession)
 		{
-			$this->_collection->update(
-					[$this->idColumn => $oldId]
-					, [$this->idColumn => $newId]
-					, $this->_options
-			);
+			$this->destroySession($document->id);
+			$model = new Session();
+			$model->id = $newId;
+			$this->em->insert($model);
 		}
 		else
 		{
-			$row[$this->idColumn] = $newId;
-			unset($row['_id']);
-			$this->_collection->insert($row, $this->_options);
+			$this->model->id = $newId;
+			$criteria = new Criteria(null, $this->model);
+			$criteria->id = $oldId;
+			$this->em->updateOne($criteria, ['id']);
 		}
 	}
 
