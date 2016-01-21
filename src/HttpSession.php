@@ -14,6 +14,7 @@
 namespace Maslosoft\ManganYii;
 
 use CHttpSession;
+use Exception;
 use Maslosoft\Mangan\Criteria;
 use Maslosoft\Mangan\EntityManager;
 use Maslosoft\Mangan\Finder;
@@ -78,6 +79,7 @@ class HttpSession extends CHttpSession
 	 * @var EntityManager
 	 */
 	private $em = null;
+	private $mn = null;
 
 	/**
 	 *
@@ -93,9 +95,9 @@ class HttpSession extends CHttpSession
 	{
 		parent::init();
 		$this->model = new Session();
-		$mangan = Mangan::fly($this->connectionId);
-		$this->em = EntityManager::create($this->model, $mangan);
-		$this->finder = Finder::create($this->model, $this->em, $mangan);
+		$this->mn = Mangan::fly($this->connectionId);
+
+		$this->finder = Finder::create($this->model, $this->getEm(), $this->mn);
 
 		$this->model->ip = $_SERVER['REMOTE_ADDR'];
 		$ua = (object) parse_user_agent();
@@ -146,17 +148,17 @@ class HttpSession extends CHttpSession
 			{
 				// Update old session id. NOTE: Variable name reads *delete*OldSession
 				// because otherways we leave this session and insert new one
-				$this->em->updateOne($this->getCriteria($oldId), ['id']);
+				$this->getEm()->updateOne($this->getCriteria($oldId), ['id']);
 			}
 			else
 			{
-				$this->em->insert();
+				$this->getEm()->insert();
 			}
 		}
 		else
 		{
 			$this->model->id = $newId;
-			$this->em->insert();
+			$this->getEm()->insert();
 		}
 	}
 
@@ -201,9 +203,9 @@ class HttpSession extends CHttpSession
 			{
 				$this->model->userId = Yii::app()->user->id;
 			}
-			return $this->em->updateOne($this->getCriteria($id));
+			return $this->getEm()->updateOne($this->getCriteria($id));
 		}
-		catch (\Exception $e)
+		catch (Exception $e)
 		{
 
 			echo $e->getMessage();
@@ -246,6 +248,15 @@ class HttpSession extends CHttpSession
 		$criteria = new Criteria(null, $this->model);
 		$criteria->id = $id;
 		return $criteria;
+	}
+
+	/**
+	 * Get entity manager for update
+	 * @return EntityManager
+	 */
+	private function getEm()
+	{
+		return $this->em = EntityManager::create($this->model, $this->mn);
 	}
 
 }
