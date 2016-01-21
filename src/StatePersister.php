@@ -11,9 +11,9 @@ namespace Maslosoft\ManganYii;
 use Maslosoft\Mangan\Criteria;
 use Maslosoft\Mangan\EntityManager;
 use Maslosoft\Mangan\Finder;
+use Maslosoft\Mangan\Mangan;
 use Maslosoft\ManganYii\Interfaces\StatePersisterInterface;
 use Maslosoft\ManganYii\Models\State;
-use Yii;
 
 /**
  * StatePersister
@@ -22,6 +22,12 @@ use Yii;
  */
 class StatePersister implements StatePersisterInterface
 {
+
+	/**
+	 * Optional connection id used to store state, if empty will use default
+	 * @var string
+	 */
+	public $connectionId = '';
 
 	/**
 	 * Finder instance
@@ -44,8 +50,9 @@ class StatePersister implements StatePersisterInterface
 	public function init()
 	{
 		$this->model = new State;
-		$this->finder = Finder::create($this->model);
-		$this->em = EntityManager::create($this->model);
+		$mangan = Mangan::fly($this->connectionId);
+		$this->em = EntityManager::create($this->model, $mangan);
+		$this->finder = Finder::create($this->model, $this->em, $mangan);
 	}
 
 	public function load()
@@ -65,7 +72,7 @@ class StatePersister implements StatePersisterInterface
 		$this->model->stateId = __CLASS__;
 		$criteria = new Criteria();
 		$criteria->stateId = __CLASS__;
-		return $this->em->updateOne($criteria, ['data'], true);
+		return $this->em->updateOne($criteria, null, true);
 	}
 
 }

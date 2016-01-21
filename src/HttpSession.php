@@ -17,6 +17,7 @@ use CHttpSession;
 use Maslosoft\Mangan\Criteria;
 use Maslosoft\Mangan\EntityManager;
 use Maslosoft\Mangan\Finder;
+use Maslosoft\Mangan\Mangan;
 use Maslosoft\ManganYii\Models\Session;
 use MongoDate;
 use Yii;
@@ -36,6 +37,12 @@ use Yii;
  */
 class HttpSession extends CHttpSession
 {
+
+	/**
+	 * Optional connection id used to store state, if empty will use default
+	 * @var string
+	 */
+	public $connectionId = '';
 
 	/**
 	 * Finder instance
@@ -63,8 +70,9 @@ class HttpSession extends CHttpSession
 	{
 		parent::init();
 		$this->model = new Session();
-		$this->finder = Finder::create($this->model);
-		$this->em = EntityManager::create($this->model);
+		$mangan = Mangan::fly($this->connectionId);
+		$this->em = EntityManager::create($this->model, $mangan);
+		$this->finder = Finder::create($this->model, $this->em, $mangan);
 	}
 
 	/**
