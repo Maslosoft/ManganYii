@@ -10,6 +10,7 @@ namespace Maslosoft\ManganYii\Models;
 
 use Maslosoft\Addendum\Interfaces\AnnotatedInterface;
 use Maslosoft\Ilmatar\Widgets\Grid\Column\TimeAgo;
+use Maslosoft\Mangan\Sanitizers\DateSanitizer;
 use Maslosoft\Mangan\Sanitizers\MongoObjectId;
 use MongoId;
 
@@ -21,12 +22,6 @@ use MongoId;
 class Session implements AnnotatedInterface
 {
 
-	/**
-	 * @Sanitizer(MongoObjectId)
-	 * @see MongoObjectId
-	 * @var MongoId
-	 */
-	public $_id = null;
 	public $id = '';
 	public $data = null;
 	public $expire = 0;
@@ -38,21 +33,35 @@ class Session implements AnnotatedInterface
 	public $ip = '';
 
 	/**
+	 * @Label('Platform')
+	 * @var string
+	 */
+	public $platform = '';
+
+	/**
 	 * @Label('Browser')
 	 * @var string
 	 */
 	public $browser = '';
 
 	/**
+	 * @Label('Browser version')
+	 * @var string
+	 */
+	public $version = '';
+
+	/**
 	 * @Label('Last activity')
+	 * @Sanitizer(DateSanitizer)
 	 * @Renderer(TimeAgo)
 	 * @see TimeAgo
+	 * @see DateSanitizer
 	 * @var string
 	 */
 	public $dateTime = '';
 
 	/**
-	 * @Sanitizer(MongoObjectId)
+	 * @Sanitizer(MongoObjectId, nullable = true)
 	 * @see MongoObjectId
 	 * @var MongoId
 	 */

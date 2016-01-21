@@ -22,6 +22,20 @@ use Maslosoft\ManganYii\Models\Session;
 use MongoDate;
 use Yii;
 
+if (!function_exists('parse_user_agent'))
+{
+
+	function parse_user_agent()
+	{
+		return [
+			'browser' => 'stub browser',
+			'platform' => 'stub platform',
+			'version' => 'stub version'
+		];
+	}
+
+}
+
 /**
  * HttpSession
  *
@@ -29,6 +43,15 @@ use Yii;
  * ```php
  * 	'session' => [
  * 		'class' => \Maslosoft\ManganYii\HttpSession::class,
+ * 	],
+ * ```
+ *
+ * Optionally it can use custom connection id:
+ *
+ * ```php
+ * 	'session' => [
+ * 		'class' => \Maslosoft\ManganYii\HttpSession::class,
+ * 			'connectionId' => 'manganConnectionId'
  * 	],
  * ```
  *
@@ -73,27 +96,13 @@ class HttpSession extends CHttpSession
 		$mangan = Mangan::fly($this->connectionId);
 		$this->em = EntityManager::create($this->model, $mangan);
 		$this->finder = Finder::create($this->model, $this->em, $mangan);
-	}
 
-	/**
-	 *
-	 * @param string $id
-	 * @return Session|null
-	 */
-	protected function getData($id)
-	{
-		$found = $this->finder->findByAttributes(['id' => $id]);
-		if (null === $found)
-		{
-			return null;
-		}
-		$this->model = $found;
-		return $found;
-	}
-
-	protected function getExipireTime()
-	{
-		return time() + $this->getTimeout();
+		$this->model->ip = $_SERVER['REMOTE_ADDR'];
+		$ua = (object) parse_user_agent();
+		$this->model->platform = $ua->platform;
+		$this->model->browser = $ua->browser;
+		$this->model->version = $ua->version;
+		$this->model->dateTime = new MongoDate();
 	}
 
 	/**
@@ -107,15 +116,48 @@ class HttpSession extends CHttpSession
 	}
 
 	/**
-	 * Session open handler.
-	 * Do not call this method directly.
-	 * @param string $savePath session save path
-	 * @param string $sessionName session name
-	 * @return boolean whether session is opened successfully
+	 * Updates the current session id with a newly generated one.
+	 * Please refer to {@link http://php.net/session_regenerate_id} for more details.
+	 * @since 1.1.8
 	 */
-	public function openSession($savePath, $sessionName)
+	public function regenerateID($deleteOldSession = false)
 	{
-		$this->gcSession(0);
+		$oldId = session_id();
+
+		// Session not started, ignore regenerate
+		if (empty($oldId))
+		{
+			return;
+		}
+		parent::regenerateID(false);
+		$newId = session_id();
+
+		// Something went wrong, do not save it
+		if (empty($newId))
+		{
+			return;
+		}
+		$found = $this->finder->find($this->getCriteria($oldId));
+		if ($found !== null)
+		{
+			$this->model = $found;
+			$this->model->id = $newId;
+			if ($deleteOldSession)
+			{
+				// Update old session id. NOTE: Variable name reads *delete*OldSession
+				// because otherways we leave this session and insert new one
+				$this->em->updateOne($this->getCriteria($oldId), ['id']);
+			}
+			else
+			{
+				$this->em->insert();
+			}
+		}
+		else
+		{
+			$this->model->id = $newId;
+			$this->em->insert();
+		}
 	}
 
 	/**
@@ -126,8 +168,13 @@ class HttpSession extends CHttpSession
 	 */
 	public function readSession($id)
 	{
-		$document = $this->getData($id);
-		return $document === null ? '' : $document->data;
+		$found = $this->finder->find($this->getCriteria($id));
+		if (null === $found || empty($found->id))
+		{
+			return '';
+		}
+		$this->model = $found;
+		return $this->model->data;
 	}
 
 	/**
@@ -139,14 +186,30 @@ class HttpSession extends CHttpSession
 	 */
 	public function writeSession($id, $data)
 	{
-		$this->model->data = $data;
-		$this->model->ip = $_SERVER['REMOTE_ADDR'];
-		$this->model->browser = $_SERVER[' HTTP_USER_AGENT'];
-		$this->model->dateTime = new MongoDate();
-		$this->model->userId = Yii::app()->user->id;
-		$criteria = new Criteria(null, $this->model);
-		$criteria->id = $id;
-		return $this->em->updateOne($criteria, null, true);
+		if (empty($id))
+		{
+			return false;
+		}
+		// exception must be caught in session write handler
+		// http://us.php.net/manual/en/function.session-set-save-handler.php
+		try
+		{
+			$this->model->id = $id;
+			$this->model->data = $data;
+			$this->model->expire = time() + $this->getTimeout();
+			if (!empty(Yii::app()->user))
+			{
+				$this->model->userId = Yii::app()->user->id;
+			}
+			return $this->em->updateOne($this->getCriteria($id));
+		}
+		catch (\Exception $e)
+		{
+
+			echo $e->getMessage();
+			// it is too late to log an error message here
+			return false;
+		}
 	}
 
 	/**
@@ -157,9 +220,7 @@ class HttpSession extends CHttpSession
 	 */
 	public function destroySession($id)
 	{
-		$criteria = new Criteria(null, $this->model);
-		$criteria->id = $id;
-		return $this->em->deleteOne($criteria);
+		return $this->em->deleteOne($this->getCriteria($id));
 	}
 
 	/**
@@ -171,43 +232,20 @@ class HttpSession extends CHttpSession
 	public function gcSession($maxLifetime)
 	{
 		$criteria = new Criteria(null, $this->model);
-		$criteria->addCond('expire', '$lt', time());
-		$this->em->deleteAll($criteria);
+		$criteria->addCond('expire', 'lt', time());
+		return $this->em->deleteAll($criteria);
 	}
 
 	/**
-	 * Updates the current session id with a newly generated one.
-	 * Please refer to {@link http://php.net/session_regenerate_id} for more details.
-	 * @param boolean $deleteOldSession Whether to delete the old associated session file or not.
-	 * @since 1.1.8
+	 *
+	 * @param string $id
+	 * @return Criteria
 	 */
-	public function regenerateID($deleteOldSession = false)
+	private function getCriteria($id)
 	{
-		$oldId = session_id();
-
-		parent::regenerateID(false);
-		$newId = session_id();
-		$document = $this->getData($oldId);
-		if (is_null($document))
-		{
-			$model = new Session();
-			$model->id = $newId;
-			$this->em->insert($model);
-		}
-		elseif ($deleteOldSession)
-		{
-			$this->destroySession($document->id);
-			$model = new Session();
-			$model->id = $newId;
-			$this->em->insert($model);
-		}
-		else
-		{
-			$this->model->id = $newId;
-			$criteria = new Criteria(null, $this->model);
-			$criteria->id = $oldId;
-			$this->em->updateOne($criteria, ['id']);
-		}
+		$criteria = new Criteria(null, $this->model);
+		$criteria->id = $id;
+		return $criteria;
 	}
 
 }

@@ -1,31 +1,109 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f1b458185cf8706f6e55343c738ffce8",
+    "hash": "08460a2f6f1a50abedf3b753df8f2712",
+    "content-hash": "8bae082952dcec5db6d3a9d4cd4ac626",
     "packages": [
         {
-            "name": "maslosoft/addendum",
-            "version": "3.1.2",
+            "name": "donatj/phpuseragentparser",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Maslosoft/Addendum.git",
-                "reference": "d1f5f2ffd6bbe65a0fa93a50c56ce681e034bc83"
+                "url": "https://github.com/donatj/PhpUserAgent.git",
+                "reference": "1acea75664179c8f0dcd57ced7e75a01af86bfa8",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/Addendum/zipball/d1f5f2ffd6bbe65a0fa93a50c56ce681e034bc83",
-                "reference": "d1f5f2ffd6bbe65a0fa93a50c56ce681e034bc83",
-                "shasum": ""
+                "url": "https://api.github.com/repos/donatj/PhpUserAgent/zipball/1acea75664179c8f0dcd57ced7e75a01af86bfa8",
+                "reference": "1acea75664179c8f0dcd57ced7e75a01af86bfa8",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "camspiers/json-pretty": "0.1.*",
+                "donatj/drop": "*",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "Source/UserAgentParser.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jesse G. Donat",
+                    "email": "donatj@gmail.com",
+                    "homepage": "http://donatstudios.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple, streamlined PHP user-agent parser",
+            "homepage": "http://donatstudios.com/PHP-Parser-HTTP_USER_AGENT",
+            "keywords": [
+                "browser",
+                "browser detection",
+                "parser",
+                "user agent",
+                "useragent"
+            ],
+            "time": "2015-09-22 21:04:13"
+        },
+        {
+            "name": "maslosoft/addendum",
+            "version": "4.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Maslosoft/Addendum.git",
+                "reference": "734aa75bf225ab1fa909867eed6cf7ffb441c1c9",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Maslosoft/Addendum/zipball/734aa75bf225ab1fa909867eed6cf7ffb441c1c9",
+                "reference": "734aa75bf225ab1fa909867eed6cf7ffb441c1c9",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "maslosoft/cache": "*",
+                "maslosoft/cli-shared": "*",
                 "maslosoft/embedi": "*",
                 "maslosoft/gazebo": "*",
                 "maslosoft/signals": "*",
                 "php": ">=5.5.0",
-                "psr/log": "~1.0"
+                "psr/log": "~1"
             },
             "require-dev": {
                 "maslosoft/addendumtest": "dev-master",
@@ -60,25 +138,143 @@
                 "annotations",
                 "metadata"
             ],
-            "time": "2015-03-17 18:02:26"
+            "time": "2016-01-21 14:38:15"
         },
         {
-            "name": "maslosoft/embedi",
-            "version": "1.0.0",
+            "name": "maslosoft/cache",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Maslosoft/EmbeDi.git",
-                "reference": "9a830148da7ce1f777605d0c1db840ec9b834c7a"
+                "url": "https://github.com/Maslosoft/Cache.git",
+                "reference": "e48501316d3a492483ef86aa3cffc367e87d78c5",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/EmbeDi/zipball/9a830148da7ce1f777605d0c1db840ec9b834c7a",
-                "reference": "9a830148da7ce1f777605d0c1db840ec9b834c7a",
-                "shasum": ""
+                "url": "https://api.github.com/repos/Maslosoft/Cache/zipball/e48501316d3a492483ef86aa3cffc367e87d78c5",
+                "reference": "e48501316d3a492483ef86aa3cffc367e87d78c5",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "maslosoft/embedi": "*"
+            },
+            "require-dev": {
+                "maslosoft/cachetest": "dev-master",
+                "maslosoft/hedron": "~1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maslosoft\\Cache\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL",
+                "Commercial"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Maselkowski",
+                    "email": "pmaselkowski@gmail.com"
+                }
+            ],
+            "description": "Easy to use, auto configurable, extensible cache provider",
+            "time": "2015-11-03 13:24:03"
+        },
+        {
+            "name": "maslosoft/cli-shared",
+            "version": "0.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Maslosoft/CLIShared.git",
+                "reference": "49f12217ef59b5b0614b473fc429602818d210a2",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Maslosoft/CLIShared/zipball/49f12217ef59b5b0614b473fc429602818d210a2",
+                "reference": "49f12217ef59b5b0614b473fc429602818d210a2",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "symfony/yaml": "^3"
+            },
+            "require-dev": {
+                "maslosoft/hedron": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maslosoft\\Cli\\Shared\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL",
+                "Commercial"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Maselkowski",
+                    "email": "pmaselkowski@gmail.com"
+                }
+            ],
+            "description": "Shared CLI application components",
+            "time": "2016-01-21 13:45:32"
+        },
+        {
+            "name": "maslosoft/embedi",
+            "version": "1.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Maslosoft/EmbeDi.git",
+                "reference": "dda3b7ba533ccaa0fe368a89438c4d671d8af29f",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Maslosoft/EmbeDi/zipball/dda3b7ba533ccaa0fe368a89438c4d671d8af29f",
+                "reference": "dda3b7ba533ccaa0fe368a89438c4d671d8af29f",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require-dev": {
                 "maslosoft/embeditest": "dev-master",
-                "maslosoft/hedron": "~1"
+                "maslosoft/hedron": "~1",
+                "maslosoft/zamm": "dev-master"
             },
             "type": "library",
             "autoload": {
@@ -88,7 +284,8 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "New BSD"
+                "AGPL",
+                "Commercial"
             ],
             "authors": [
                 {
@@ -98,25 +295,41 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2015-03-09 11:41:03"
+            "description": "Embedded DI container",
+            "time": "2015-09-10 08:51:23"
         },
         {
             "name": "maslosoft/gazebo",
-            "version": "1.0.1",
+            "version": "1.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maslosoft/Gazebo.git",
-                "reference": "bd7a394d3a7daa24d88a97fb873ee50906721fc7"
+                "reference": "3951a688d57e2845729450b6f5a9104157e2744e",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/Gazebo/zipball/bd7a394d3a7daa24d88a97fb873ee50906721fc7",
-                "reference": "bd7a394d3a7daa24d88a97fb873ee50906721fc7",
-                "shasum": ""
+                "url": "https://api.github.com/repos/Maslosoft/Gazebo/zipball/3951a688d57e2845729450b6f5a9104157e2744e",
+                "reference": "3951a688d57e2845729450b6f5a9104157e2744e",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "maslosoft/addendum": "*",
+                "maslosoft/embedi": "*"
             },
             "require-dev": {
-                "codeception/codeception": "*",
-                "codeception/specify": "*",
+                "maslosoft/gazebotest": "dev-master",
                 "maslosoft/hedron": "*"
             },
             "type": "library",
@@ -127,7 +340,8 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "New BSD"
+                "AGPL",
+                "Commercial"
             ],
             "authors": [
                 {
@@ -136,29 +350,68 @@
                 }
             ],
             "description": "Plugin container",
-            "time": "2015-03-16 11:14:23"
+            "time": "2016-01-09 09:30:55"
         },
         {
             "name": "maslosoft/mangan",
-            "version": "2.1.1",
+            "version": "4.2.18",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Maslosoft/YiiMangan.git",
-                "reference": "5de194e1a6006a73e5be33e96cfca207a687b62a"
+                "url": "https://github.com/Maslosoft/Mangan.git",
+                "reference": "e0f8d3bac05a3aa82c643f84f9e739885e88004a",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/YiiMangan/zipball/5de194e1a6006a73e5be33e96cfca207a687b62a",
-                "reference": "5de194e1a6006a73e5be33e96cfca207a687b62a",
-                "shasum": ""
+                "url": "https://api.github.com/repos/Maslosoft/Mangan/zipball/e0f8d3bac05a3aa82c643f84f9e739885e88004a",
+                "reference": "e0f8d3bac05a3aa82c643f84f9e739885e88004a",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
-                "maslosoft/addendum": "*"
+                "ext-gd": "*",
+                "maslosoft/addendum": "*",
+                "maslosoft/embedi": "*",
+                "maslosoft/gazebo": "*",
+                "maslosoft/miniview": "*",
+                "maslosoft/signals": "*",
+                "masterexploder/phpthumb": "^2",
+                "mongofill/mongofill": "@dev",
+                "psr/log": "^1",
+                "ptachoire/php-dmtx": "^1",
+                "symfony/yaml": "^3"
             },
-            "type": "yii-extension",
+            "require-dev": {
+                "ext-curl": "*",
+                "maslosoft/hedron": "*",
+                "maslosoft/mangan-examples": "*",
+                "maslosoft/mangantest": "dev-master",
+                "maslosoft/zamm": "@dev"
+            },
+            "suggest": {
+                "mongofill/mongofill": "Polyfill of PECL Mongo extension. Required for PHP7",
+                "monolog/monolog": "Sends your logs to files, sockets, inboxes, databases and various web services"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maslosoft\\Mangan\\": "src/"
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GNU LESSER GENERAL PUBLIC LICENSE"
+                "AGPL",
+                "Commercial"
             ],
             "authors": [
                 {
@@ -166,26 +419,124 @@
                     "email": "pmaselkowski@gmail.com",
                     "homepage": "http://maslosoft.com",
                     "role": "Developer"
+                },
+                {
+                    "name": "Ianaré Sévi",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Dariusz Górecki",
+                    "email": "darek.krk@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Invenzzia Group",
+                    "homepage": "http://www.invenzzia.org",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Philippe Gaultier",
+                    "email": "pgaultier@ibitux.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Ibitux",
+                    "homepage": "http://www.ibitux.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "CleverIT",
+                    "homepage": "http://www.cleverit.com.pl",
+                    "role": "Developrt"
+                },
+                {
+                    "name": "Florian Fackler",
+                    "email": "florian.fackler@mintao.com",
+                    "homepage": "http://mintao.com"
                 }
             ],
-            "time": "2014-06-02 09:11:17"
+            "description": "MongoDB Object Persister",
+            "time": "2016-01-21 15:07:19"
         },
         {
-            "name": "maslosoft/signals",
-            "version": "1.1.0",
+            "name": "maslosoft/miniview",
+            "version": "1.0.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Maslosoft/Signals.git",
-                "reference": "62ba6bce6f68af7df066b0e04f290d41f4793e5d"
+                "url": "https://github.com/Maslosoft/MiniView.git",
+                "reference": "c5b22e07ae26e52aef145ff249b39402d4ab25a1",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/Signals/zipball/62ba6bce6f68af7df066b0e04f290d41f4793e5d",
-                "reference": "62ba6bce6f68af7df066b0e04f290d41f4793e5d",
-                "shasum": ""
+                "url": "https://api.github.com/repos/Maslosoft/MiniView/zipball/c5b22e07ae26e52aef145ff249b39402d4ab25a1",
+                "reference": "c5b22e07ae26e52aef145ff249b39402d4ab25a1",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require-dev": {
+                "maslosoft/hedron": "~1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maslosoft\\MiniView\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL",
+                "Commercial"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Maselkowski",
+                    "email": "pmaselkowski@gmail.com"
+                }
+            ],
+            "description": "Mini view is minimal template rendering library based on Yii controller renderer",
+            "homepage": "http://maslosoft.com/miniview/",
+            "time": "2015-08-24 18:09:00"
+        },
+        {
+            "name": "maslosoft/signals",
+            "version": "1.1.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Maslosoft/Signals.git",
+                "reference": "5a3b367f38ce2a05a32ac8b2ac9a1295a204df43",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Maslosoft/Signals/zipball/5a3b367f38ce2a05a32ac8b2ac9a1295a204df43",
+                "reference": "5a3b367f38ce2a05a32ac8b2ac9a1295a204df43",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "maslosoft/addendum": "*",
+                "maslosoft/cli-shared": "*",
                 "maslosoft/embedi": "*",
                 "psr/log": "~1"
             },
@@ -193,15 +544,19 @@
                 "maslosoft/hedron": "*",
                 "maslosoft/signalstest": "dev-master"
             },
+            "bin": [
+                "signals"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Maslosoft\\Signals\\": "src/"
+                    "Maslosoft\\Signals\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL or Commercial"
+                "AGPL",
+                "Commercial"
             ],
             "authors": [
                 {
@@ -220,7 +575,209 @@
                 "slot",
                 "slots"
             ],
-            "time": "2015-03-10 11:02:58"
+            "time": "2015-12-22 11:34:20"
+        },
+        {
+            "name": "masterexploder/phpthumb",
+            "version": "2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/masterexploder/PHPThumb.git",
+                "reference": "01f6aa65aa3d136e175f67da2b4ea3e316770d02",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/masterexploder/PHPThumb/zipball/01f6aa65aa3d136e175f67da2b4ea3e316770d02",
+                "reference": "01f6aa65aa3d136e175f67da2b4ea3e316770d02",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPThumb": "src",
+                    "PHPThumb\\Tests": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jarrod Nettles",
+                    "email": "jarrod.nettles@icloud.com"
+                },
+                {
+                    "name": "Ian Selby",
+                    "email": "ian@gxdlabs.com"
+                }
+            ],
+            "description": "A library for manipulating images in PHP.",
+            "homepage": "https://github.com/masterexploder/PHPThumb",
+            "keywords": [
+                "image",
+                "resize",
+                "rotate"
+            ],
+            "time": "2015-09-08 22:55:44"
+        },
+        {
+            "name": "mongofill/mongofill",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mongofill/mongofill.git",
+                "reference": "c2a16b7cb6c8fa94aa4c286acd8b4a90c3a843f5",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mongofill/mongofill/zipball/c2a16b7cb6c8fa94aa4c286acd8b4a90c3a843f5",
+                "reference": "c2a16b7cb6c8fa94aa4c286acd8b4a90c3a843f5",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "provide": {
+                "ext-mongo": "*"
+            },
+            "require-dev": {
+                "athletic/athletic": "dev-master",
+                "phpunit/phpunit": "~4.7.7"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    {
+                        "Mongofill": "src/"
+                    },
+                    {
+                        "Mongo": "src/Mongo.php"
+                    },
+                    {
+                        "MongoBinData": "src/MongoBinData.php"
+                    },
+                    {
+                        "MongoClient": "src/MongoClient.php"
+                    },
+                    {
+                        "MongoCode": "src/MongoCode.php"
+                    },
+                    {
+                        "MongoCollection": "src/MongoCollection.php"
+                    },
+                    {
+                        "MongoConnectionException": "src/MongoConnectionException.php"
+                    },
+                    {
+                        "MongoCursor": "src/MongoCursor.php"
+                    },
+                    {
+                        "MongoCursorException": "src/MongoCursorException.php"
+                    },
+                    {
+                        "MongoCursorTimeoutException": "src/MongoCursorTimeoutException.php"
+                    },
+                    {
+                        "MongoDB": "src/MongoDB.php"
+                    },
+                    {
+                        "MongoDBRef": "src/MongoDBRef.php"
+                    },
+                    {
+                        "MongoDate": "src/MongoDate.php"
+                    },
+                    {
+                        "MongoException": "src/MongoException.php"
+                    },
+                    {
+                        "MongoGridFS": "src/MongoGridFS.php"
+                    },
+                    {
+                        "MongoGridFSFile": "src/MongoGridFSFile.php"
+                    },
+                    {
+                        "MongoGridFSException": "src/MongoGridFSException.php"
+                    },
+                    {
+                        "MongoGridFSCursor": "src/MongoGridFSCursor.php"
+                    },
+                    {
+                        "MongoId": "src/MongoId.php"
+                    },
+                    {
+                        "MongoInt32": "src/MongoInt32.php"
+                    },
+                    {
+                        "MongoInt64": "src/MongoInt64.php"
+                    },
+                    {
+                        "MongoLog": "src/MongoLog.php"
+                    },
+                    {
+                        "MongoMaxKey": "src/MongoMaxKey.php"
+                    },
+                    {
+                        "MongoMinKey": "src/MongoMinKey.php"
+                    },
+                    {
+                        "MongoRegex": "src/MongoRegex.php"
+                    },
+                    {
+                        "MongoResultException": "src/MongoResultException.php"
+                    },
+                    {
+                        "MongoTimestamp": "src/MongoTimestamp.php"
+                    }
+                ],
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Husák",
+                    "email": "husak.j@gmail.com"
+                },
+                {
+                    "name": "Mongofill Community",
+                    "homepage": "https://github.com/mongofill/mongofill/graphs/contributors"
+                },
+                {
+                    "name": "Máximo Cuadros",
+                    "email": "mcuadros@gmail.com"
+                }
+            ],
+            "description": "Polyfill of PECL Mongo extension",
+            "time": "2015-08-22 21:39:36"
         },
         {
             "name": "psr/log",
@@ -259,28 +816,277 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "ptachoire/php-dmtx",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/krichprollsch/php-dmtx.git",
+                "reference": "de35e34fe9223465cb7f52723dbb6d410216f245",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/krichprollsch/php-dmtx/zipball/de35e34fe9223465cb7f52723dbb6d410216f245",
+                "reference": "de35e34fe9223465cb7f52723dbb6d410216f245",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "symfony/options-resolver": "~2.5",
+                "symfony/process": "~2.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Dmtx": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pierre Tachoire",
+                    "email": "pierre.tachoire@gmail.com"
+                }
+            ],
+            "description": "Datamatrix r/w based on libdmtx <http://www.libdmtx.org/>",
+            "time": "2015-07-15 10:49:04"
+        },
+        {
+            "name": "symfony/options-resolver",
+            "version": "v2.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/options-resolver.git",
+                "reference": "b98ca04f85240531b9ea8a0f00a21f2ecfbdfa51",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/b98ca04f85240531b9ea8a0f00a21f2ecfbdfa51",
+                "reference": "b98ca04f85240531b9ea8a0f00a21f2ecfbdfa51",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\OptionsResolver\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony OptionsResolver Component",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "config",
+                "configuration",
+                "options"
+            ],
+            "time": "2016-01-03 15:33:41"
+        },
+        {
+            "name": "symfony/process",
+            "version": "v2.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/process.git",
+                "reference": "6f1979c3b0f4c22c77a8a8971afaa7dd07f082ac",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/6f1979c3b0f4c22c77a8a8971afaa7dd07f082ac",
+                "reference": "6f1979c3b0f4c22c77a8a8971afaa7dd07f082ac",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Process\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Process Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-01-06 09:59:23"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "3df409958a646dad2bc5046c3fb671ee24a1a691",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/3df409958a646dad2bc5046c3fb671ee24a1a691",
+                "reference": "3df409958a646dad2bc5046c3fb671ee24a1a691",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-12-26 13:39:53"
         }
     ],
     "packages-dev": [
         {
             "name": "maslosoft/hedron",
-            "version": "1.1.2",
+            "version": "1.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maslosoft/Hedron.git",
-                "reference": "7cc09cba44ef65dca6f63cdccc6cce455d20b1a9"
+                "reference": "9d7c16ee4346636188bc3f31d9cd56e96cf16fcd",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/Hedron/zipball/7cc09cba44ef65dca6f63cdccc6cce455d20b1a9",
-                "reference": "7cc09cba44ef65dca6f63cdccc6cce455d20b1a9",
-                "shasum": ""
+                "url": "https://api.github.com/repos/Maslosoft/Hedron/zipball/9d7c16ee4346636188bc3f31d9cd56e96cf16fcd",
+                "reference": "9d7c16ee4346636188bc3f31d9cd56e96cf16fcd",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "phpunit/php-code-coverage": "~2",
                 "symfony/console": "~2",
                 "symfony/finder": "~2",
-                "symfony/yaml": "~2",
+                "symfony/yaml": "~3",
                 "zordius/lightncandy": "0.18.*"
             },
             "bin": [
@@ -294,7 +1100,8 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "New BSD"
+                "AGPL",
+                "Commercial"
             ],
             "authors": [
                 {
@@ -304,28 +1111,40 @@
             ],
             "description": "PHP source code class header applier",
             "homepage": "http://maslosoft.com/hedron/",
-            "time": "2015-01-30 08:48:06"
+            "time": "2015-12-21 20:43:34"
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.0.15",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "34cc484af1ca149188d0d9e91412191e398e0b67"
+                "reference": "eabf68b476ac7d0f73793aada060f1c1a9bf8979",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/34cc484af1ca149188d0d9e91412191e398e0b67",
-                "reference": "34cc484af1ca149188d0d9e91412191e398e0b67",
-                "shasum": ""
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/eabf68b476ac7d0f73793aada060f1c1a9bf8979",
+                "reference": "eabf68b476ac7d0f73793aada060f1c1a9bf8979",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": ">=5.3.3",
                 "phpunit/php-file-iterator": "~1.3",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-token-stream": "~1.3",
-                "sebastian/environment": "~1.0",
+                "sebastian/environment": "^1.3.2",
                 "sebastian/version": "~1.0"
             },
             "require-dev": {
@@ -340,7 +1159,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.2.x-dev"
                 }
             },
             "autoload": {
@@ -366,35 +1185,49 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-01-24 10:06:35"
+            "time": "2015-10-06 15:47:00"
         },
         {
             "name": "phpunit/php-file-iterator",
-            "version": "1.3.4",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "acd690379117b042d1c8af1fafd61bde001bf6bb"
+                "reference": "6150bf2c35d3fc379e50c7602b75caceaa39dbf0",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/acd690379117b042d1c8af1fafd61bde001bf6bb",
-                "reference": "acd690379117b042d1c8af1fafd61bde001bf6bb",
-                "shasum": ""
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/6150bf2c35d3fc379e50c7602b75caceaa39dbf0",
+                "reference": "6150bf2c35d3fc379e50c7602b75caceaa39dbf0",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
-                    "File/"
+                    "src/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                ""
-            ],
             "license": [
                 "BSD-3-Clause"
             ],
@@ -411,21 +1244,33 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2013-10-10 15:34:57"
+            "time": "2015-06-21 13:08:43"
         },
         {
             "name": "phpunit/php-text-template",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-text-template.git",
-                "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a"
+                "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
-                "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
-                "shasum": ""
+                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
+                "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": ">=5.3.3"
@@ -433,20 +1278,17 @@
             "type": "library",
             "autoload": {
                 "classmap": [
-                    "Text/"
+                    "src/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                ""
-            ],
             "license": [
                 "BSD-3-Clause"
             ],
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
+                    "email": "sebastian@phpunit.de",
                     "role": "lead"
                 }
             ],
@@ -455,21 +1297,33 @@
             "keywords": [
                 "template"
             ],
-            "time": "2014-01-30 17:20:04"
+            "time": "2015-06-21 13:50:34"
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.0",
+            "version": "1.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "db32c18eba00b121c145575fcbcd4d4d24e6db74"
+                "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/db32c18eba00b121c145575fcbcd4d4d24e6db74",
-                "reference": "db32c18eba00b121c145575fcbcd4d4d24e6db74",
-                "shasum": ""
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
+                "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "ext-tokenizer": "*",
@@ -504,32 +1358,44 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-01-17 09:51:32"
+            "time": "2015-09-15 10:49:45"
         },
         {
             "name": "sebastian/environment",
-            "version": "1.2.1",
+            "version": "1.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "6e6c71d918088c251b181ba8b3088af4ac336dd7"
+                "reference": "6e7133793a8e5a5714a551a8324337374be209df",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6e6c71d918088c251b181ba8b3088af4ac336dd7",
-                "reference": "6e6c71d918088c251b181ba8b3088af4ac336dd7",
-                "shasum": ""
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6e7133793a8e5a5714a551a8324337374be209df",
+                "reference": "6e7133793a8e5a5714a551a8324337374be209df",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.3"
+                "phpunit/phpunit": "~4.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.3.x-dev"
                 }
             },
             "autoload": {
@@ -554,21 +1420,33 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2014-10-25 08:00:45"
+            "time": "2015-12-02 08:37:27"
         },
         {
             "name": "sebastian/version",
-            "version": "1.0.4",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/version.git",
-                "reference": "a77d9123f8e809db3fbdea15038c27a95da4058b"
+                "reference": "58b3a85e7999757d6ad81c787a1fbf5ff6c628c6",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/a77d9123f8e809db3fbdea15038c27a95da4058b",
-                "reference": "a77d9123f8e809db3fbdea15038c27a95da4058b",
-                "shasum": ""
+                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/58b3a85e7999757d6ad81c787a1fbf5ff6c628c6",
+                "reference": "58b3a85e7999757d6ad81c787a1fbf5ff6c628c6",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "type": "library",
             "autoload": {
@@ -589,31 +1467,42 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2014-12-15 14:25:24"
+            "time": "2015-06-21 13:59:46"
         },
         {
             "name": "symfony/console",
-            "version": "v2.6.5",
-            "target-dir": "Symfony/Component/Console",
+            "version": "v2.8.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Console.git",
-                "reference": "53f86497ccd01677e22435cfb7262599450a90d1"
+                "url": "https://github.com/symfony/console.git",
+                "reference": "d0239fb42f98dd02e7d342f793c5d2cdee0c478d",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/53f86497ccd01677e22435cfb7262599450a90d1",
-                "reference": "53f86497ccd01677e22435cfb7262599450a90d1",
-                "shasum": ""
+                "url": "https://api.github.com/repos/symfony/console/zipball/d0239fb42f98dd02e7d342f793c5d2cdee0c478d",
+                "reference": "d0239fb42f98dd02e7d342f793c5d2cdee0c478d",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.9",
+                "symfony/polyfill-mbstring": "~1.0"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/event-dispatcher": "~2.1",
-                "symfony/phpunit-bridge": "~2.7",
-                "symfony/process": "~2.1"
+                "symfony/event-dispatcher": "~2.1|~3.0.0",
+                "symfony/process": "~2.1|~3.0.0"
             },
             "suggest": {
                 "psr/log": "For using the console logger",
@@ -623,13 +1512,16 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "Symfony\\Component\\Console\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -637,49 +1529,60 @@
             ],
             "authors": [
                 {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
             "description": "Symfony Console Component",
-            "homepage": "http://symfony.com",
-            "time": "2015-03-13 17:37:22"
+            "homepage": "https://symfony.com",
+            "time": "2016-01-14 08:33:16"
         },
         {
             "name": "symfony/finder",
-            "version": "v2.6.5",
-            "target-dir": "Symfony/Component/Finder",
+            "version": "v2.8.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Finder.git",
-                "reference": "bebc7479c566fa4f14b9bcef9e32e719eabec74e"
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "c90fabdd97e431ee19b6383999cf35334dff27da",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/bebc7479c566fa4f14b9bcef9e32e719eabec74e",
-                "reference": "bebc7479c566fa4f14b9bcef9e32e719eabec74e",
-                "shasum": ""
+                "url": "https://api.github.com/repos/symfony/finder/zipball/c90fabdd97e431ee19b6383999cf35334dff27da",
+                "reference": "c90fabdd97e431ee19b6383999cf35334dff27da",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
+                "php": ">=5.3.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "Symfony\\Component\\Finder\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -687,49 +1590,63 @@
             ],
             "authors": [
                 {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
             "description": "Symfony Finder Component",
-            "homepage": "http://symfony.com",
-            "time": "2015-03-12 10:28:44"
+            "homepage": "https://symfony.com",
+            "time": "2016-01-14 08:26:52"
         },
         {
-            "name": "symfony/yaml",
-            "version": "v2.6.5",
-            "target-dir": "Symfony/Component/Yaml",
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Yaml.git",
-                "reference": "0cd8e72071e46e15fc072270ae39ea1b66b10a9d"
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "49ff736bd5d41f45240cec77b44967d76e0c3d25",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/0cd8e72071e46e15fc072270ae39ea1b66b10a9d",
-                "reference": "0cd8e72071e46e15fc072270ae39ea1b66b10a9d",
-                "shasum": ""
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/49ff736bd5d41f45240cec77b44967d76e0c3d25",
+                "reference": "49ff736bd5d41f45240cec77b44967d76e0c3d25",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
+            "suggest": {
+                "ext-mbstring": "For best performance"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "1.0-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\Yaml\\": ""
-                }
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -737,17 +1654,24 @@
             ],
             "authors": [
                 {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
                 },
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
-            "description": "Symfony Yaml Component",
-            "homepage": "http://symfony.com",
-            "time": "2015-03-12 10:28:44"
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2015-11-20 09:19:13"
         },
         {
             "name": "zordius/lightncandy",
@@ -799,7 +1723,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "mongofill/mongofill": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

@@ -51,7 +51,9 @@
 		"issues": "https://github.com/Maslosoft/ManganYii/issues"
 	},
 	"require": {
-		"maslosoft/mangan": "*"
+		"maslosoft/mangan": "*",
+		"mongofill/mongofill": "@dev",
+		"donatj/phpuseragentparser": "^0.5.0"
 	},
 	"require-dev": {
 		"maslosoft/hedron": "~1"
