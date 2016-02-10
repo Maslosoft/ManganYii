@@ -99,11 +99,14 @@ class HttpSession extends CHttpSession
 
 		$this->finder = Finder::create($this->model, $this->getEm(), $this->mn);
 
-		$this->model->ip = $_SERVER['REMOTE_ADDR'];
-		$ua = (object) parse_user_agent();
-		$this->model->platform = $ua->platform;
-		$this->model->browser = $ua->browser;
-		$this->model->version = $ua->version;
+		if (isset($_SERVER['REMOTE_ADDR']))
+		{
+			$this->model->ip = $_SERVER['REMOTE_ADDR'];
+			$ua = (object) parse_user_agent();
+			$this->model->platform = $ua->platform;
+			$this->model->browser = $ua->browser;
+			$this->model->version = $ua->version;
+		}
 		$this->model->dateTime = new MongoDate();
 	}
 
