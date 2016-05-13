@@ -52,11 +52,10 @@
 	},
 	"require": {
 		"maslosoft/mangan": "*",
-		"mongofill/mongofill": "@dev",
-		"donatj/phpuseragentparser": "^0.5.0"
+		"donatj/phpuseragentparser": "^0.5"
 	},
 	"require-dev": {
-		"maslosoft/hedron": "~1"
+		"maslosoft/hedron": "*"
 	},
 	"suggest": {
 		"monolog/monolog": "Sends your logs to files, sockets, inboxes, databases and various web services",
