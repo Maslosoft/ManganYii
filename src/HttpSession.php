@@ -134,7 +134,12 @@ class HttpSession extends CHttpSession
 		{
 			return;
 		}
-		parent::regenerateID(false);
+
+		if ($this->getIsStarted())
+		{
+			// Prevent php nightly warnings
+			@session_regenerate_id(false);
+		}
 		$newId = session_id();
 
 		// Something went wrong, do not save it
