@@ -52,7 +52,7 @@
 	},
 	"require": {
 		"maslosoft/mangan": "*",
-		"donatj/phpuseragentparser": "^0.5"
+		"donatj/phpuseragentparser": "^0"
 	},
 	"require-dev": {
 		"maslosoft/hedron": "*"
