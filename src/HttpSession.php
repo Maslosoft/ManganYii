@@ -18,6 +18,7 @@ use Exception;
 use Maslosoft\Mangan\Criteria;
 use Maslosoft\Mangan\EntityManager;
 use Maslosoft\Mangan\Finder;
+use Maslosoft\Mangan\Interfaces\EntityManagerInterface;
 use Maslosoft\Mangan\Mangan;
 use Maslosoft\ManganYii\Models\Session;
 use MongoDate;
@@ -63,10 +64,10 @@ class HttpSession extends CHttpSession
 {
 
 	/**
-	 * Optional connection id used to store state, if empty will use default
+	 * Optional connection id used to store state, if not set will use default
 	 * @var string
 	 */
-	public $connectionId = '';
+	public $connectionId = Mangan::DefaultConnectionId;
 
 	/**
 	 * Finder instance
@@ -242,7 +243,7 @@ class HttpSession extends CHttpSession
 	public function gcSession($maxLifetime)
 	{
 		$criteria = new Criteria(null, $this->model);
-		$criteria->addCond('expire', 'lt', time());
+		$criteria->addCond('expire', 'lt', time() - $maxLifetime);
 		return $this->em->deleteAll($criteria);
 	}
 
@@ -260,7 +261,7 @@ class HttpSession extends CHttpSession
 
 	/**
 	 * Get entity manager for update
-	 * @return EntityManager
+	 * @return EntityManager|EntityManagerInterface
 	 */
 	private function getEm()
 	{

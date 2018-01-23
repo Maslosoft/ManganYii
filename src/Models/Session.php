@@ -17,6 +17,7 @@ use Maslosoft\Addendum\Interfaces\AnnotatedInterface;
 use Maslosoft\Ilmatar\Widgets\Grid\Column\TimeAgo;
 use Maslosoft\Mangan\Sanitizers\DateSanitizer;
 use Maslosoft\Mangan\Sanitizers\MongoObjectId;
+use Maslosoft\Mangan\Sort;
 use MongoId;
 
 /**
@@ -27,8 +28,21 @@ use MongoId;
 class Session implements AnnotatedInterface
 {
 
+	/**
+	 * @PrimaryKey
+	 * @Index(Sort::SortAsc)
+	 * @Index(Sort::SortDesc)
+	 *
+	 * @see Sort
+	 * @var string
+	 */
 	public $id = '';
 	public $data = null;
+
+	/**
+	 * @Index
+	 * @var int
+	 */
 	public $expire = 0;
 
 	/**
