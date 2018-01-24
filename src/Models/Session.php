@@ -14,7 +14,7 @@
 namespace Maslosoft\ManganYii\Models;
 
 use Maslosoft\Addendum\Interfaces\AnnotatedInterface;
-use Maslosoft\Ilmatar\Widgets\Grid\Column\TimeAgo;
+use Maslosoft\Widgets\Grid\Column\TimeAgo;
 use Maslosoft\Mangan\Sanitizers\DateSanitizer;
 use Maslosoft\Mangan\Sanitizers\MongoObjectId;
 use Maslosoft\Mangan\Sort;

@@ -1,6 +1,8 @@
 {
 	"name": "maslosoft/mangan-yii",
 	"description": "Mangan components for Yii",
+	"type": "library",
+	"keywords": ["mongodb", "mangan", "yii", "php"],
 	"license": [
 		"AGPL",
 		"Commercial"
