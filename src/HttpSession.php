@@ -22,6 +22,7 @@ use Maslosoft\Mangan\Interfaces\EntityManagerInterface;
 use Maslosoft\Mangan\Mangan;
 use Maslosoft\ManganYii\Models\Session;
 use MongoDate;
+use function php_sapi_name;
 use Yii;
 
 if (!function_exists('parse_user_agent'))
@@ -110,6 +111,36 @@ class HttpSession extends CHttpSession
 		}
 		$this->model->dateTime = new MongoDate();
 	}
+
+	/**
+	 * Sets the session cookie parameters.
+	 * The effect of this method only lasts for the duration of the script.
+	 * Call this method before the session starts.
+	 * @param array $value cookie parameters, valid keys include: lifetime, path,
+	 * domain, secure, httponly. Note that httponly is all lowercase.
+	 * @see http://us2.php.net/manual/en/function.session-set-cookie-params.php
+	 */
+	public function setCookieParams($value)
+	{
+		if(php_sapi_name() === 'cli')
+		{
+			return;
+		}
+		parent::setCookieParams($value);
+	}
+
+	/**
+	 * @param string $value the session name for the current session, must be an alphanumeric string, defaults to PHPSESSID
+	 */
+	public function setSessionName($value)
+	{
+		if(php_sapi_name() === 'cli')
+		{
+			return;
+		}
+		parent::setSessionName($value);
+	}
+
 
 	/**
 	 * Returns a value indicating whether to use custom session storage.
