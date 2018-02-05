@@ -15,6 +15,7 @@ namespace Maslosoft\ManganYii;
 
 use CHttpSession;
 use Exception;
+use function headers_sent;
 use Maslosoft\Mangan\Criteria;
 use Maslosoft\Mangan\EntityManager;
 use Maslosoft\Mangan\Finder;
@@ -167,7 +168,7 @@ class HttpSession extends CHttpSession
 			return;
 		}
 
-		if ($this->getIsStarted())
+		if ($this->getIsStarted() && !headers_sent())
 		{
 			// Prevent php nightly warnings
 			@session_regenerate_id(false);
