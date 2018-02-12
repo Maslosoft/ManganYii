@@ -104,6 +104,10 @@ class HttpSession extends CHttpSession
 
 		if (isset($_SERVER['REMOTE_ADDR']))
 		{
+			if(empty($_SERVER['HTTP_USER_AGENT']))
+			{
+				$_SERVER['HTTP_USER_AGENT'] = 'unknown';
+			}
 			$this->model->ip = $_SERVER['REMOTE_ADDR'];
 			$ua = (object) parse_user_agent();
 			$this->model->platform = $ua->platform;
@@ -111,6 +115,14 @@ class HttpSession extends CHttpSession
 			$this->model->version = $ua->version;
 		}
 		$this->model->dateTime = new MongoDate();
+	}
+
+	public function open()
+	{
+		if($this->canSetSession())
+		{
+			parent::open();
+		}
 	}
 
 	/**
@@ -123,11 +135,10 @@ class HttpSession extends CHttpSession
 	 */
 	public function setCookieParams($value)
 	{
-		if(php_sapi_name() === 'cli')
+		if($this->canSetSession())
 		{
-			return;
+			parent::setCookieParams($value);
 		}
-		parent::setCookieParams($value);
 	}
 
 	/**
@@ -135,11 +146,10 @@ class HttpSession extends CHttpSession
 	 */
 	public function setSessionName($value)
 	{
-		if(php_sapi_name() === 'cli')
+		if($this->canSetSession())
 		{
-			return;
+			parent::setSessionName($value);
 		}
-		parent::setSessionName($value);
 	}
 
 
@@ -168,7 +178,7 @@ class HttpSession extends CHttpSession
 			return;
 		}
 
-		if ($this->getIsStarted() && !headers_sent())
+		if ($this->getIsStarted() && !headers_sent() && php_sapi_name() !== 'cli')
 		{
 			// Prevent php nightly warnings
 			@session_regenerate_id(false);
@@ -300,4 +310,8 @@ class HttpSession extends CHttpSession
 		return $this->em = EntityManager::create($this->model, $this->mn);
 	}
 
+	private function canSetSession()
+	{
+		return !headers_sent();
+	}
 }
