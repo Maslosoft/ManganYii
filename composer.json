@@ -53,15 +53,15 @@
 		"issues": "https://github.com/Maslosoft/ManganYii/issues"
 	},
 	"require": {
-		"maslosoft/mangan": "*",
-		"donatj/phpuseragentparser": "^0"
+		"maslosoft/mangan": "*"
 	},
 	"require-dev": {
 		"maslosoft/hedron": "*"
 	},
 	"suggest": {
 		"monolog/monolog": "Sends your logs to files, sockets, inboxes, databases and various web services",
-		"mongofill/mongofill": "Polyfill of PECL Mongo extension"
+		"mongofill/mongofill": "Polyfill of PECL Mongo extension",
+		"donatj/phpuseragentparser": "Provides User Agent recognition"
 	},
 	"autoload": {
 		"psr-4": {

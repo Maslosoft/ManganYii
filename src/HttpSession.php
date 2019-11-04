@@ -15,6 +15,7 @@ namespace Maslosoft\ManganYii;
 
 use CHttpSession;
 use Exception;
+use function function_exists;
 use function headers_sent;
 use Maslosoft\Mangan\Criteria;
 use Maslosoft\Mangan\EntityManager;
@@ -25,20 +26,6 @@ use Maslosoft\ManganYii\Models\Session;
 use MongoDate;
 use function php_sapi_name;
 use Yii;
-
-if (!function_exists('parse_user_agent'))
-{
-
-	function parse_user_agent()
-	{
-		return [
-			'browser' => 'stub browser',
-			'platform' => 'stub platform',
-			'version' => 'stub version'
-		];
-	}
-
-}
 
 /**
  * HttpSession
@@ -109,10 +96,13 @@ class HttpSession extends CHttpSession
 				$_SERVER['HTTP_USER_AGENT'] = 'unknown';
 			}
 			$this->model->ip = $_SERVER['REMOTE_ADDR'];
-			$ua = (object) parse_user_agent();
-			$this->model->platform = $ua->platform;
-			$this->model->browser = $ua->browser;
-			$this->model->version = $ua->version;
+			if(function_exists('parse_user_agent'))
+			{
+				$ua = (object)parse_user_agent();
+				$this->model->platform = $ua->platform;
+				$this->model->browser = $ua->browser;
+				$this->model->version = $ua->version;
+			}
 		}
 		$this->model->dateTime = new MongoDate();
 	}
