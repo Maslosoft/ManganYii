@@ -1,7 +1,7 @@
 <!--header-->
 <!-- Auto generated do not modify between `header` and `/header` -->
 
-# <a href="https://maslosoft.com/mangan-yii/">Maslosoft Mangan Yii</a>
+#  <a href="https://maslosoft.com/mangan-yii/">Maslosoft Mangan Yii</a>
 <a href="https://maslosoft.com/mangan-yii/">_Mangan components for Yii_</a>
 
 <a href="https://packagist.org/packages/maslosoft/mangan-yii" title="Latest Stable Version">
