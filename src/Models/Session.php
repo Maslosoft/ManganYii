@@ -18,7 +18,7 @@ use Maslosoft\Widgets\Grid\Column\TimeAgo;
 use Maslosoft\Mangan\Sanitizers\DateSanitizer;
 use Maslosoft\Mangan\Sanitizers\MongoObjectId;
 use Maslosoft\Mangan\Sort;
-use MongoId;
+use MongoDB\BSON\ObjectId;
 
 /**
  * Session
@@ -82,7 +82,7 @@ class Session implements AnnotatedInterface
 	/**
 	 * @Sanitizer(MongoObjectId, nullable = true)
 	 * @see MongoObjectId
-	 * @var MongoId
+	 * @var ObjectId
 	 */
 	public $userId = null;
 
