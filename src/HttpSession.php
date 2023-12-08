@@ -15,6 +15,7 @@ namespace Maslosoft\ManganYii;
 
 use CHttpSession;
 use Exception;
+use MongoDB\BSON\UTCDateTime;
 use function function_exists;
 use function headers_sent;
 use Maslosoft\Mangan\Criteria;
@@ -23,7 +24,6 @@ use Maslosoft\Mangan\Finder;
 use Maslosoft\Mangan\Interfaces\EntityManagerInterface;
 use Maslosoft\Mangan\Mangan;
 use Maslosoft\ManganYii\Models\Session;
-use MongoDate;
 use function php_sapi_name;
 use Yii;
 
@@ -104,10 +104,10 @@ class HttpSession extends CHttpSession
 				$this->model->version = $ua->version;
 			}
 		}
-		$this->model->dateTime = new MongoDate();
+		$this->model->dateTime = new UTCDateTime();
 	}
 
-	public function open()
+	public function open(): void
 	{
 		if($this->canSetSession())
 		{
@@ -123,7 +123,7 @@ class HttpSession extends CHttpSession
 	 * domain, secure, httponly. Note that httponly is all lowercase.
 	 * @see http://us2.php.net/manual/en/function.session-set-cookie-params.php
 	 */
-	public function setCookieParams($value)
+	public function setCookieParams($value): void
 	{
 		if($this->canSetSession())
 		{
@@ -134,7 +134,7 @@ class HttpSession extends CHttpSession
 	/**
 	 * @param string $value the session name for the current session, must be an alphanumeric string, defaults to PHPSESSID
 	 */
-	public function setSessionName($value)
+	public function setSessionName($value): void
 	{
 		if($this->canSetSession())
 		{
@@ -261,7 +261,7 @@ class HttpSession extends CHttpSession
 	 * @param string $id session ID
 	 * @return boolean whether session is destroyed successfully
 	 */
-	public function destroySession($id)
+	public function destroySession($id): bool
 	{
 		return $this->em->deleteOne($this->getCriteria($id));
 	}
@@ -272,7 +272,7 @@ class HttpSession extends CHttpSession
 	 * @param integer $maxLifetime the number of seconds after which data will be seen as 'garbage' and cleaned up.
 	 * @return boolean whether session is GCed successfully
 	 */
-	public function gcSession($maxLifetime)
+	public function gcSession($maxLifetime): bool
 	{
 		$criteria = new Criteria(null, $this->model);
 		$criteria->addCond('expire', 'lt', time() - $maxLifetime);
@@ -284,7 +284,7 @@ class HttpSession extends CHttpSession
 	 * @param string $id
 	 * @return Criteria
 	 */
-	private function getCriteria($id)
+	private function getCriteria($id): Criteria
 	{
 		$criteria = new Criteria(null, $this->model);
 		$criteria->id = $id;
@@ -300,7 +300,7 @@ class HttpSession extends CHttpSession
 		return $this->em = EntityManager::create($this->model, $this->mn);
 	}
 
-	private function canSetSession()
+	private function canSetSession(): bool
 	{
 		return !headers_sent();
 	}
