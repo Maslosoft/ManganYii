@@ -1,71 +1,80 @@
 {
-	"name": "maslosoft/mangan-yii",
-	"description": "Mangan components for Yii",
-	"type": "library",
-	"keywords": ["mongodb", "mangan", "yii", "php"],
-	"license": [
-		"AGPL",
-		"Commercial"
-	],
-	"authors": [
-		{
-			"name": "Peter Maselkowski",
-			"email": "pmaselkowski@gmail.com",
-			"homepage": "http://maslosoft.com",
-			"role": "Developer"
-		},
-		{
-			"name": "Ianar\u00e9 S\u00e9vi",
-			"role": "Developer"
-		},
-		{
-			"name": "Dariusz G\u00f3recki",
-			"email": "darek.krk@gmail.com",
-			"role": "Developer"
-		},
-		{
-			"name": "Invenzzia Group",
-			"homepage": "http://www.invenzzia.org",
-			"role": "Developer"
-		},
-		{
-			"name": "Philippe Gaultier",
-			"email": "pgaultier@ibitux.com",
-			"role": "Developer"
-		},
-		{
-			"name": "Ibitux",
-			"homepage": "http://www.ibitux.com",
-			"role": "Developer"
-		},
-		{
-			"name": "CleverIT",
-			"homepage": "http://www.cleverit.com.pl",
-			"role": "Developrt"
-		},
-		{
-			"name": "Florian Fackler",
-			"email": "florian.fackler@mintao.com",
-			"homepage": "http://mintao.com"
-		}
-	],
-	"support": {
-		"issues": "https://github.com/Maslosoft/ManganYii/issues"
-	},
-	"require": {
-		"maslosoft/mangan": "*"
-	},
-	"require-dev": {
-		"maslosoft/hedron": "*"
-	},
-	"suggest": {
-		"monolog/monolog": "Sends your logs to files, sockets, inboxes, databases and various web services",
-		"mongofill/mongofill": "Polyfill of PECL Mongo extension",
-		"donatj/phpuseragentparser": "Provides User Agent recognition"
-	},
-	"autoload": {
-		"psr-4": {
-			"Maslosoft\\ManganYii\\": "src/"
-		}
-	}
+    "name": "maslosoft/mangan-yii",
+    "description": "Mangan components for Yii",
+    "type": "library",
+    "keywords": [
+        "mongodb",
+        "mangan",
+        "yii",
+        "php"
+    ],
+    "license": [
+        "AGPL",
+        "Commercial"
+    ],
+    "authors": [
+        {
+            "name": "Peter Maselkowski",
+            "email": "pmaselkowski@gmail.com",
+            "homepage": "http://maslosoft.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Ianar\u00e9 S\u00e9vi",
+            "role": "Developer"
+        },
+        {
+            "name": "Dariusz G\u00f3recki",
+            "email": "darek.krk@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Invenzzia Group",
+            "homepage": "http://www.invenzzia.org",
+            "role": "Developer"
+        },
+        {
+            "name": "Philippe Gaultier",
+            "email": "pgaultier@ibitux.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Ibitux",
+            "homepage": "http://www.ibitux.com",
+            "role": "Developer"
+        },
+        {
+            "name": "CleverIT",
+            "homepage": "http://www.cleverit.com.pl",
+            "role": "Developrt"
+        },
+        {
+            "name": "Florian Fackler",
+            "email": "florian.fackler@mintao.com",
+            "homepage": "http://mintao.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Maslosoft/ManganYii/issues"
+    },
+    "require": {
+        "ext-mongodb": "*",
+        "maslosoft/mangan": "^7"
+    },
+    "require-dev": {
+        "codeception/codeception": "^5",
+        "codeception/module-asserts": "^3",
+        "codeception/module-phpbrowser": "*",
+        "yiisoft/yii": "^1"
+    },
+    "suggest": {
+        "monolog/monolog": "Sends your logs to files, sockets, inboxes, databases and various web services",
+        "mongofill/mongofill": "Polyfill of PECL Mongo extension",
+        "donatj/phpuseragentparser": "Provides User Agent recognition"
+    },
+    "autoload": {
+        "psr-4": {
+            "Maslosoft\\ManganYii\\": "src/"
+        }
+    }
 }
