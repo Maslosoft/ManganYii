@@ -1,5 +1,6 @@
 {
     "name": "maslosoft/mangan-yii",
+    "version": "1.0.10",
     "description": "Mangan components for Yii",
     "type": "library",
     "keywords": [
