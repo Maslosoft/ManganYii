@@ -60,10 +60,13 @@
     },
     "require": {
         "php": "^8",
-        "maslosoft/mangan": "*"
+        "maslosoft/mangan": "^7"
     },
     "require-dev": {
-        "maslosoft/hedron": "*"
+        "codeception/codeception": "^5",
+        "codeception/module-asserts": "^3",
+        "codeception/module-phpbrowser": "*",
+        "yiisoft/yii": "^1"
     },
     "suggest": {
         "monolog/monolog": "Sends your logs to files, sockets, inboxes, databases and various web services",

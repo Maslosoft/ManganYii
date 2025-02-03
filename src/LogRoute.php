@@ -16,8 +16,10 @@ namespace Maslosoft\ManganYii;
 use CLogRoute;
 use Maslosoft\Mangan\Mangan;
 use Maslosoft\Mangan\Exceptions\ManganException;
+use Maslosoft\ManganYii\Models\Log;
 use MongoCollection;
-use MongoDate;
+use MongoDB\BSON\UTCDateTime;
+use MongoDB\Collection;
 use Yii;
 
 /**
@@ -56,11 +58,13 @@ use Yii;
  */
 class LogRoute extends CLogRoute
 {
+	public const DefaultCollectionName = 'logs';
+
 	/**
 	 * Model class name
 	 * @var string
 	 */
-	public $model = Maslosoft\ManganYii\Models\LogModel::class;
+	public $model = Log::class;
 
 	/**
 	 * @var string timestamp type name: 'float', 'date', 'string'
@@ -117,25 +121,33 @@ class LogRoute extends CLogRoute
 	 */
 	public $timeout = null;
 
+
+	private $collectionName = self::DefaultCollectionName;
+
+	/**
+	 * @var string
+	 */
+	public string $connectionID;
+
 	/**
 	 * @var array Insert options.
 	 */
 	private $_options;
 
 	/**
-	 * @var MongoCollection Collection object used.
+	 * @var Collection Collection object used.
 	 */
 	private $_collection;
 
 	/**
 	 * Returns current MongoCollection object.
-	 * @return MongoCollection
+	 * @return Collection
 	 */
 	protected function setCollection($collectionName)
 	{
 		if (!isset($this->_collection))
 		{
-			$db = Yii::app()->getComponent($this->connectionID);
+			$db = Mangan::fly($this->connectionID);
 			if (!($db instanceof Mangan))
 			{
 				throw new ManganException('HttpSession.connectionID is invalid');
@@ -150,10 +162,8 @@ class LogRoute extends CLogRoute
 	 * Initialize the route.
 	 * This method is invoked after the route is created by the route manager.
 	 */
-	public function init()
+	public function init(): void
 	{
-		parent::init();
-
 		$this->setCollection($this->collectionName);
 		$this->_options = [
 			'fsync' => $this->fsync
@@ -167,18 +177,18 @@ class LogRoute extends CLogRoute
 
 	/**
 	 * Return the formatted timestamp.
-	 * @param float $timestamp Timestamp as given by log function.
-	 * @return mixed
+	 * @param int|float|string $timestamp Timestamp as given by log function.
+	 * @return int|float|string|UTCDateTime
 	 */
-	protected function formatTimestamp($timestamp)
+	protected function formatTimestamp($timestamp): int|float|string|UTCDateTime
 	{
 		if ($this->timestampType === 'date')
 		{
-			$timestamp = new MongoDate(round($timestamp));
+			$timestamp = new UTCDateTime(round((float)$timestamp) * 1000);
 		}
 		elseif ($this->timestampType === 'string')
 		{
-			$timestamp = date('Y-m-d H:i:s', $timestamp);
+			$timestamp = date('Y-m-d H:i:s', (int)$timestamp);
 		}
 		return $timestamp;
 	}
@@ -197,7 +207,7 @@ class LogRoute extends CLogRoute
 	{
 		foreach ($logs as $log)
 		{
-			$this->_collection->insert([
+			$this->_collection->insertOne([
 				$this->message => $log[0],
 				$this->level => $log[1],
 				$this->category => $log[2],
