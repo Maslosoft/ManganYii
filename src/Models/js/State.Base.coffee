@@ -1,25 +1,27 @@
 #
 # Auto generated model from php class
 #
-# Maslosoft.ManganYii.Models.State
+# α.ManganYii.Models.State
 # 
 # 
 #
 # DO NOT MODIFY! ANY CHANGES MIGHT BE LOST.
 #
-class @Maslosoft.ManganYii.Models.State_Base extends @Maslosoft.Components.Model
+class α.ManganYii.Models.State_Base extends α.Components.Model
+
+
 	
 	#
 	# 
 	# 
-	# @var NULL
+	# @var null
 	#
 	data: null
 	
 	#
 	# 
 	# 
-	# @var NULL
+	# @var null
 	#
 	stateId: null
 
