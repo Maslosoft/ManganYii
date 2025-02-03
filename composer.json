@@ -2,7 +2,12 @@
 	"name": "maslosoft/mangan-yii",
 	"description": "Mangan components for Yii",
 	"type": "library",
-	"keywords": ["mongodb", "mangan", "yii", "php"],
+	"keywords": [
+		"mongodb",
+		"mangan",
+		"yii",
+		"php"
+	],
 	"license": [
 		"AGPL",
 		"Commercial"
@@ -41,7 +46,7 @@
 		{
 			"name": "CleverIT",
 			"homepage": "http://www.cleverit.com.pl",
-			"role": "Developrt"
+			"role": "Developer"
 		},
 		{
 			"name": "Florian Fackler",
@@ -53,6 +58,7 @@
 		"issues": "https://github.com/Maslosoft/ManganYii/issues"
 	},
 	"require": {
+		"php": "^8",
 		"maslosoft/mangan": "*"
 	},
 	"require-dev": {
@@ -60,12 +66,12 @@
 	},
 	"suggest": {
 		"monolog/monolog": "Sends your logs to files, sockets, inboxes, databases and various web services",
-		"mongofill/mongofill": "Polyfill of PECL Mongo extension",
 		"donatj/phpuseragentparser": "Provides User Agent recognition"
 	},
 	"autoload": {
 		"psr-4": {
 			"Maslosoft\\ManganYii\\": "src/"
 		}
-	}
+	},
+	"homepage": "https://maslosoft.com/mangan-yii/"
 }
